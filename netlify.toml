@@ -1,0 +1,4 @@
+[build]
+  base    = "understanding-patriarchy"
+  command = "npm install && npm run build"
+  publish = "dist"
