@@ -37,6 +37,7 @@ import ArmorVisualizer from './components/ArmorVisualizer';
 import PerspectiveExplorer from './components/PerspectiveExplorer';
 import NetworkBg from './components/NetworkBg';
 import DeeperRealityMap from './components/DeeperRealityMap';
+import EverydayExpectations from './components/EverydayExpectations';
 
 interface Section {
   id: string;
@@ -51,6 +52,7 @@ const SECTIONS: Section[] = [
   { id: 'section-2', label: 'System Rules', subLabel: 'How Inside Software Runs', theme: 'beige' },
   { id: 'section-3', label: 'Cultural Gears', subLabel: 'Invisible Power in Motion', theme: 'beige' },
   { id: 'section-4', label: 'City Spaces', subLabel: 'Hidden Norms in Plain Sight', theme: 'slate' },
+  { id: 'section-4-expectations', label: 'Everyday Expectations', subLabel: 'Quiet Social Demands', theme: 'slate' },
   { id: 'section-5', label: 'Workplace Walls', subLabel: 'Unseen Systemic Limits', theme: 'slate' },
   { id: 'section-6-7', label: 'Unpacking Privilege', subLabel: 'Beyond the Surface', theme: 'navy' },
   { id: 'section-8', label: 'Legal Archives', subLabel: 'Tracing the Roots of Power', theme: 'navy' },
@@ -389,6 +391,17 @@ export default function App() {
           </div>
 
           <WomenExperienceSplit />
+        </div>
+      </section>
+
+      {/* SECTION 4.5: Everyday expectations (Marriage, Family, Workplace) */}
+      <section
+        ref={(el) => { sectionRefs.current['section-4-expectations'] = el; }}
+        id="section-4-expectations"
+        className="min-h-screen py-24 transition-colors duration-1000 flex items-center"
+      >
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
+          <EverydayExpectations />
         </div>
       </section>
 
