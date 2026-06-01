@@ -23,7 +23,7 @@ export default function SystemDiagram() {
           The Anatomy of an Operating System
         </h3>
         <p className="text-sm font-sans text-gray-500 max-w-xl mx-auto">
-          Hover over or tap a systemic ring to watch how power, expectations, and cultural codes radiate outwards from the patriarchal core.
+          Hover over or tap any concentric ring to see how power, expectations, and cultural codes radiate outwards from the core.
         </p>
       </div>
 

@@ -20,6 +20,7 @@ import {
   Hash,
   Scale,
   ArrowRight,
+  ArrowLeft,
   Info,
   Menu,
   X
@@ -34,7 +35,9 @@ import CorporatePyramid from './components/CorporatePyramid';
 import PrivilegePyramid from './components/PrivilegePyramid';
 import TimelineHistory from './components/TimelineHistory';
 import ArmorVisualizer from './components/ArmorVisualizer';
+import MenHarmVisualizer from './components/MenHarmVisualizer';
 import PerspectiveExplorer from './components/PerspectiveExplorer';
+import SystemicLedger from './components/SystemicLedger';
 import NetworkBg from './components/NetworkBg';
 import DeeperRealityMap from './components/DeeperRealityMap';
 import EverydayExpectations from './components/EverydayExpectations';
@@ -53,11 +56,12 @@ const SECTIONS: Section[] = [
   { id: 'section-3', label: 'Cultural Gears', subLabel: 'Invisible Power in Motion', theme: 'beige' },
   { id: 'section-4', label: 'City Spaces', subLabel: 'Hidden Norms in Plain Sight', theme: 'slate' },
   { id: 'section-4-expectations', label: 'Everyday Expectations', subLabel: 'Quiet Social Demands', theme: 'slate' },
-  { id: 'section-5', label: 'Workplace Walls', subLabel: 'Unseen Systemic Limits', theme: 'slate' },
+  { id: 'section-5', label: 'Workplace Walls', subLabel: 'Unseen Structural Limits', theme: 'slate' },
   { id: 'section-6-7', label: 'Unpacking Privilege', subLabel: 'Beyond the Surface', theme: 'navy' },
   { id: 'section-8', label: 'Legal Archives', subLabel: 'Tracing the Roots of Power', theme: 'navy' },
   { id: 'section-9', label: 'Cost of Armor', subLabel: 'How Patriarchy Hurts Men', theme: 'dark' },
-  { id: 'section-10-11', label: 'Three Perspectives', subLabel: 'Angles on Structural Shift', theme: 'dark' },
+  { id: 'section-10', label: 'Dual Perspectives', subLabel: 'Intellectual Debate', theme: 'dark' },
+  { id: 'section-11', label: 'System Ledger', subLabel: 'Who Benefits & Who Pays', theme: 'gold' },
   { id: 'section-12', label: 'Interactive Web', subLabel: 'Mapping the Whole System', theme: 'gold' },
   { id: 'section-13', label: 'Reflection', subLabel: 'Framing the Path Forward', theme: 'beige' }
 ];
@@ -140,7 +144,15 @@ export default function App() {
       {/* 1. Header Navigation HUD / Reading Progress Line */}
       <nav id="nyt-head-hud" className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md border-b border-stone-200/50 flex flex-col pt-3 pb-2.5 px-4 md:px-8 text-[#2c2a29]">
         <div className="w-full max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-3">
+          <div 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="flex items-center gap-3 cursor-pointer group select-none hover:opacity-90 active:opacity-75 transition-all"
+            title="Toggle Chapters Menu"
+          >
+            {/* Inline Hamburger Menu Icon next to branding on the left */}
+            <div className="bg-stone-100 group-hover:bg-[#f4eedc] group-hover:text-[#8c7851] p-1.5 rounded-lg transition-colors text-stone-600 flex items-center justify-center">
+              {isMenuOpen ? <X size={14} /> : <Menu size={14} />}
+            </div>
             <span className="font-serif font-bold tracking-tight text-lg leading-none border-r border-stone-300 pr-3.5 text-stone-800 whitespace-nowrap">
               Asmitha T M
             </span>
@@ -154,12 +166,12 @@ export default function App() {
               Est. Reading time: 14 mins
             </span>
 
-            {/* Quick-navigation Menu Button */}
+            {/* Quick-navigation Menu Button on desktop */}
             <div className="relative">
               <button
                 id="menu-toggle-btn"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-stone-900 hover:bg-stone-800 text-white rounded-lg text-xs font-mono font-medium transition-all cursor-pointer shadow-xs"
+                className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-stone-900 hover:bg-stone-800 text-white rounded-lg text-xs font-mono font-medium transition-all cursor-pointer shadow-xs"
               >
                 {isMenuOpen ? <X size={13} /> : <Menu size={13} />}
                 <span>Chapters</span>
@@ -173,7 +185,7 @@ export default function App() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute right-0 mt-2 w-64 bg-white border border-[#e8dfc4] rounded-xl shadow-xl py-2 z-55 max-h-[80vh] overflow-y-auto"
+                    className="hidden md:block absolute right-0 mt-2 w-64 bg-white border border-[#e8dfc4] rounded-xl shadow-xl py-2 z-55 max-h-[80vh] overflow-y-auto"
                   >
                     <div className="px-4 py-1.5 border-b border-stone-100 mb-1">
                       <span className="font-mono text-[9px] uppercase tracking-wider text-[#8c7851] font-bold">
@@ -276,8 +288,8 @@ export default function App() {
         className="min-h-screen py-20 bg-[#faf8f5] flex items-center relative"
       >
         <div className="w-full max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="col-span-1 lg:col-span-5 space-y-6">
-            <div className="inline-flex gap-2 items-center">
+          <div className="col-span-1 lg:col-span-5 lg:pl-4 xl:pl-8 space-y-6 text-center lg:text-left">
+            <div className="flex justify-center lg:justify-start gap-2 items-center">
               <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
               <span className="font-mono text-xs uppercase tracking-widest text-stone-400">Chapter I — Introduction</span>
             </div>
@@ -286,16 +298,16 @@ export default function App() {
               A System Under Audit
             </h2>
 
-            <p className="font-sans text-sm md:text-md text-stone-600 leading-relaxed">
+            <p className="font-sans text-sm md:text-md text-stone-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
               Patriarchy is one of the most discussed and misunderstood social systems in the modern world. Some people view it as a system that oppresses women. Others argue that men suffer under it too.
             </p>
 
-            <blockquote className="border-l-3 border-[#8c7851] pl-5 italic font-serif text-md text-stone-700">
+            <blockquote className="border-l-3 border-[#8c7851] pl-5 italic font-serif text-md text-stone-700 text-left max-w-xl mx-auto lg:mx-0">
               "If patriarchy hurts both women and men, why has it survived for so long? And who actually benefits from it?"
             </blockquote>
 
-            <p className="font-sans text-sm text-stone-500 leading-relaxed">
-              To answer these questions properly, we must bypass defensive social-media noise and look strictly at systemic software.
+            <p className="font-sans text-sm text-stone-500 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              To answer these questions properly, we must bypass defensive social-media noise and look strictly at the underlying social code.
             </p>
           </div>
 
@@ -412,13 +424,6 @@ export default function App() {
         className="min-h-screen py-24 transition-colors duration-1000 flex items-center"
       >
         <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
-          <div className="max-w-2xl mb-8 text-center md:text-left space-y-2">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#8c7851] bg-[#f4eedc] px-2.5 py-0.5 rounded">Chapter V — Corporate Spaces</span>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-5.5xl tracking-tight font-semibold mt-3 leading-tight text-stone-900">
-              The Institutionalized Glass Corridor
-            </h2>
-          </div>
-
           <CorporatePyramid />
         </div>
       </section>
@@ -474,24 +479,36 @@ export default function App() {
           </div>
 
           <ArmorVisualizer />
+          <MenHarmVisualizer />
         </div>
       </section>
 
-      {/* SECTION 10 & 11: Perspective branches defense vs critique (PDF page 12, 13) */}
+      {/* SECTION 10 : Perspective branches defense vs critique (PDF page 12, 13) */}
       <section
-        ref={(el) => { sectionRefs.current['section-10-11'] = el; }}
-        id="section-10-11"
+        ref={(el) => { sectionRefs.current['section-10'] = el; }}
+        id="section-10"
         className="min-h-screen py-24 transition-colors duration-1000 flex items-center"
       >
         <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
           <div className="max-w-2xl mb-8 text-center md:text-left space-y-2">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#8c7851] bg-[#f4eedc] px-2 py-0.5 rounded font-medium">Chapter X & XI — Structural Inquiries</span>
+            <span className="font-mono text-xs uppercase tracking-widest text-[#8c7851] bg-[#f4eedc] px-2 py-0.5 rounded font-medium">Chapter X — Structural Inquiries</span>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-5.5xl tracking-tight font-semibold mt-3 text-[#2a2522] leading-tight">
               Branches of Sociological Thought
             </h2>
           </div>
 
           <PerspectiveExplorer />
+        </div>
+      </section>
+
+      {/* SECTION 11: System Ledger (payoffs, beneficiaries, protection, etc.) */}
+      <section
+        ref={(el) => { sectionRefs.current['section-11'] = el; }}
+        id="section-11"
+        className="min-h-screen py-24 transition-colors duration-1000 flex items-center bg-[#faf8f5]"
+      >
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
+          <SystemicLedger />
         </div>
       </section>
 
@@ -570,10 +587,119 @@ export default function App() {
       </section>
 
       {/* Footer credits info bar */}
-      <footer className="bg-stone-900 text-stone-400 border-t border-stone-800 py-10 px-4 text-center text-xs font-mono">
+      <footer className="bg-stone-900 text-stone-400 border-t border-stone-800 py-10 px-4 text-center text-xs font-mono pb-24 md:pb-10">
         <p>© 2026 Asmitha T M · Crafted with curiosity and care.</p>
-        <p className="text-[10px] text-stone-500 mt-1.5">A compilation of sociological research and personal reflections on systemic structures.</p>
+        <p className="text-[10px] text-stone-500 mt-1.5">A compilation of sociological research and personal reflections on societal and patriarchal structures.</p>
       </footer>
+
+      {/* 2. Global Mobile Navigation Chapters Drawer (Rendered outside header containing blocks to avoid CSS position quirks) */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <>
+            <div 
+              className="fixed inset-0 bg-[#1c1a19]/60 backdrop-blur-[3px] md:hidden z-45" 
+              onClick={() => setIsMenuOpen(false)} 
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 35, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 35, scale: 0.96 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 240 }}
+              className="fixed bottom-20 left-4 right-4 md:hidden max-h-[58vh] bg-stone-50 border border-stone-200 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+            >
+              <div className="px-5 py-3 border-b border-stone-200/60 flex justify-between items-center bg-stone-50 shrink-0 z-10">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#8c7851] font-bold">
+                  Navigate Chapters
+                </span>
+                <span className="text-[10px] text-stone-400 font-mono font-medium">
+                  {SECTIONS.length} Chapters
+                </span>
+              </div>
+              <div className="flex-1 overflow-y-auto p-2 divide-y divide-stone-100/70 space-y-1">
+                {SECTIONS.map((sect, idx) => {
+                  const isActive = activeSection === sect.id;
+                  return (
+                    <button
+                      key={sect.id}
+                      onClick={() => {
+                        scrollToSection(sect.id);
+                        setIsMenuOpen(false);
+                      }}
+                      className={`w-full text-left px-4 py-3 hover:bg-stone-100 rounded-xl transition-all flex items-start gap-4 cursor-pointer ${
+                        isActive ? 'bg-[#f4eedc] text-[#8c7851] font-bold border border-[#e8dfc4]/40 shadow-2xs' : 'text-stone-800'
+                      }`}
+                    >
+                      <span className={`font-mono text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
+                        isActive ? 'bg-[#8c7851] text-white font-semibold shadow-xs' : 'bg-stone-200/60 text-stone-600'
+                      }`}>
+                        {idx + 1}
+                      </span>
+                      <div className="flex flex-col min-w-0">
+                        <span className={`text-xs font-semibold leading-tight ${isActive ? 'text-[#8c7851]' : 'text-stone-800'}`}>
+                          {sect.label}
+                        </span>
+                        <span className="text-[10px] text-stone-405 mt-0.5 truncate leading-none">
+                          {sect.subLabel}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* 3. Floating Mobile Bottom Navigation Capsule with z-55 height */}
+      <div id="mobile-floating-capsule" className="fixed bottom-4 left-1/2 -translate-x-1/2 z-55 md:hidden w-[92%] max-w-[360px]">
+        <div className="bg-[#1c1a19]/95 backdrop-blur-md border border-stone-850/80 shadow-2xl rounded-full px-2.5 py-1.5 flex items-center justify-between gap-1 text-white">
+          
+          {/* Previous Button */}
+          <button
+            onClick={() => {
+              const curIndex = SECTIONS.findIndex(s => s.id === activeSection);
+              if (curIndex > 0) {
+                scrollToSection(SECTIONS[curIndex - 1].id);
+              }
+            }}
+            disabled={activeSection === SECTIONS[0].id}
+            className="w-9 h-9 rounded-full flex items-center justify-center bg-stone-800 hover:bg-stone-700 disabled:opacity-20 disabled:pointer-events-none transition-all duration-200 cursor-pointer"
+            aria-label="Previous Chapter"
+          >
+            <ArrowLeft size={15} />
+          </button>
+
+          {/* Chapters Trigger Pill */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="flex-1 flex flex-col items-center justify-center px-1 overflow-hidden cursor-pointer"
+          >
+            <span className="text-[8px] font-mono text-[#d4c5a1] uppercase tracking-wider font-bold">
+              Chapter {SECTIONS.findIndex(s => s.id === activeSection) + 1} of {SECTIONS.length}
+            </span>
+            <span className="text-[10px] font-serif font-bold text-stone-200 truncate w-full text-center">
+              {SECTIONS.find(s => s.id === activeSection)?.label}
+            </span>
+          </button>
+
+          {/* Next Button */}
+          <button
+            onClick={() => {
+              const curIndex = SECTIONS.findIndex(s => s.id === activeSection);
+              if (curIndex < SECTIONS.length - 1) {
+                scrollToSection(SECTIONS[curIndex + 1].id);
+              }
+            }}
+            disabled={activeSection === SECTIONS[SECTIONS.length - 1].id}
+            className="w-9 h-9 rounded-full flex items-center justify-center bg-amber-500 text-stone-950 hover:bg-amber-400 disabled:opacity-20 disabled:pointer-events-none transition-all duration-200 cursor-pointer font-bold"
+            aria-label="Next Chapter"
+          >
+            <ArrowRight size={15} />
+          </button>
+
+        </div>
+      </div>
 
     </div>
   );
