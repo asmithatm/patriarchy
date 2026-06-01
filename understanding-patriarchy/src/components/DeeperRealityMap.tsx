@@ -47,6 +47,38 @@ const DOMAINS: AffectedDomain[] = [
   }
 ];
 
+const DEEPER_REALITY_TEXT = {
+  climaxBadge: "The Climax Hub",
+  climaxTitle: "The Deeper Interconnected Reality",
+  climaxDesc: "Patriarchy is not a simple \"men vs. women\" conspiracy. It is an ancient social operating system—outdated software that harms almost everyone in separate, interlocking slots.",
+  systemLabel: "Outdated Operating System",
+  dissectHeader: "Dissect Interlocking Nodes",
+  visualizerTitle: "Systems visualizer",
+  visualizerDesc: "Hover over or tap categories below to trace nodes and pathways in the map.",
+  showAllConnectionsBtn: "Show All Connections",
+  matrixHeader: "Structural Strain Matrix",
+  placeholderTitle: "The Interlocking System",
+  placeholderDesc: "Select any individual category above. Witness how patriarchy operates as a mutual ecosystem.",
+  choiceBadge: "The Perspective of Choice",
+  liberationTitle: "Liberation Over Blame",
+  grandQuote: {
+    part1: "Understanding patriarchy is not about assigning ",
+    span1: "blame to individuals",
+    part2: ". It is about recognizing an ",
+    span2: "inherited social operating system",
+    part3: " that quietly shapes how women and men are expected to think, behave, and live. The goal is not to find villains, but to understand these patterns, question inherited assumptions, and ",
+    span3: "consciously choose",
+    part4: " what to keep, what to change, and what to leave behind, creating ",
+    span4: "greater freedom of choice for everyone",
+    part5: "."
+  },
+  actionPlanHeader: "Interactive Action Plan",
+  actionPlanDesc: "Click any category button below to inspect active, measurable ways to foster choice:",
+  selectedFocusBadge: "Selected Focus",
+  stepsBadge: "3 Real-World Steps to Practice",
+  stepPrefix: "Step"
+};
+
 export default function DeeperRealityMap() {
   const [highlightedCategory, setHighlightedCategory] = useState<'women' | 'men' | 'family' | 'institution' | 'all' | 'none'>('all');
   const [activeChoiceAction, setActiveChoiceAction] = useState<'keep' | 'change' | 'leave'>('keep');
@@ -94,13 +126,13 @@ export default function DeeperRealityMap() {
       
       <div className="text-center mb-8">
         <span className="font-mono text-xs uppercase tracking-widest text-[#8c7851] bg-[#f4eedc] px-3 py-1 rounded-full">
-          The Climax Hub
+          {DEEPER_REALITY_TEXT.climaxBadge}
         </span>
         <h3 className="font-serif text-3xl md:text-4xl text-[#3a322d] mt-4 mb-2 tracking-tight">
-          The Deeper Interconnected Reality
+          {DEEPER_REALITY_TEXT.climaxTitle}
         </h3>
         <p className="text-sm font-sans text-gray-500 max-w-xl mx-auto">
-          Patriarchy is not a simple "men vs. women" conspiracy. It is an ancient social operating system—outdated software that harms almost everyone in separate, interlocking slots.
+          {DEEPER_REALITY_TEXT.climaxDesc}
         </p>
       </div>
 
@@ -120,7 +152,7 @@ export default function DeeperRealityMap() {
           {/* Core System Label inside */}
           <div className="absolute bottom-4 right-4 z-40 flex items-center gap-1.5 bg-amber-500/10 border border-amber-400/25 px-2.5 py-1 rounded-full text-amber-300 font-mono text-[10px]">
             <Activity size={10} className="animate-pulse" />
-            <span>Outdated Operating System</span>
+            <span>{DEEPER_REALITY_TEXT.systemLabel}</span>
           </div>
         </div>
 
@@ -129,16 +161,16 @@ export default function DeeperRealityMap() {
           
           <div className="space-y-6">
             <span className="font-display text-xs font-semibold text-[#8c7851] uppercase tracking-widest block">
-              Dissect Interlocking Nodes
+              {DEEPER_REALITY_TEXT.dissectHeader}
             </span>
 
             {/* Systems visualizer micro-tip box */}
             <div className="bg-stone-900/60 border border-stone-800 rounded-xl p-3">
               <span className="font-mono text-[9px] text-[#d4c5a1] block uppercase tracking-wider font-semibold">
-                Systems visualizer
+                {DEEPER_REALITY_TEXT.visualizerTitle}
               </span>
               <p className="text-[10px] text-gray-300 font-sans leading-relaxed mt-0.5">
-                Hover over or tap categories below to trace nodes and pathways in the map.
+                {DEEPER_REALITY_TEXT.visualizerDesc}
               </p>
             </div>
 
@@ -153,7 +185,7 @@ export default function DeeperRealityMap() {
                     : 'bg-stone-900 hover:bg-stone-850 text-gray-400 border border-stone-800'
                 }`}
               >
-                Show All Connections
+                {DEEPER_REALITY_TEXT.showAllConnectionsBtn}
               </button>
               {DOMAINS.map((domain) => {
                 const isActive = highlightedCategory === domain.id;
@@ -188,7 +220,7 @@ export default function DeeperRealityMap() {
                   >
                     <div>
                       <span className="font-mono text-[9px] uppercase tracking-widest text-[#8c7851] font-semibold">
-                        Systemic Strain Matrix
+                        {DEEPER_REALITY_TEXT.matrixHeader}
                       </span>
                       <h4 className="font-serif text-lg font-bold text-amber-200 mt-1 leading-tight">
                         {activeCategoryDetail.title}
@@ -211,9 +243,9 @@ export default function DeeperRealityMap() {
                   <div id="deeper-reality-placeholder" className="h-full flex flex-col justify-center items-center text-center py-6 space-y-3">
                     <Users size={20} className="text-[#8c7851]" />
                     <div>
-                      <h4 className="font-serif text-sm font-semibold text-gray-300">The Interlocking System</h4>
+                      <h4 className="font-serif text-sm font-semibold text-gray-300">{DEEPER_REALITY_TEXT.placeholderTitle}</h4>
                       <p className="text-[11px] text-gray-400 font-sans max-w-xs mx-auto mt-0.5 leading-normal">
-                        Select any individual category above. Witness how patriarchy operates as a mutual ecosystem.
+                        {DEEPER_REALITY_TEXT.placeholderDesc}
                       </p>
                     </div>
                   </div>
@@ -242,17 +274,17 @@ export default function DeeperRealityMap() {
         <div className="text-center space-y-1.5 relative z-10">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-50 text-[#8c7851] border border-amber-200 text-stone-700 font-mono text-[10px] uppercase tracking-widest font-semibold">
             <Sparkles size={11} className="text-amber-600 animate-pulse" />
-            <span>The Perspective of Choice</span>
+            <span>{DEEPER_REALITY_TEXT.choiceBadge}</span>
           </div>
           <h4 className="font-serif text-2xl md:text-3.5xl text-[#3a322d] font-bold tracking-tight">
-            Liberation Over Blame
+            {DEEPER_REALITY_TEXT.liberationTitle}
           </h4>
         </div>
 
         {/* The Beautiful Grand Quote Box in Warm High-Contrast Container */}
         <div className="max-w-4xl mx-auto relative z-10 p-6 md:p-8 bg-white rounded-2xl border border-[#8c7851]/25 shadow-sm">
           <p className="font-serif text-base sm:text-lg md:text-xl text-stone-800 font-normal leading-relaxed text-center sm:px-4">
-            "Understanding patriarchy is not about assigning <span className="text-rose-700 font-semibold bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100">blame to individuals</span>. It is about recognizing an <span className="text-amber-900 font-semibold bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">inherited social operating system</span> that quietly shapes how women and men are expected to think, behave, and live. The goal is not to find villains, but to understand these patterns, question inherited assumptions, and <span className="text-emerald-800 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100 font-medium">consciously choose</span> what to keep, what to change, and what to leave behind, creating <span className="underline underline-offset-4 decoration-amber-500/50 text-[#120f0e] font-bold">greater freedom of choice for everyone</span>."
+            "{DEEPER_REALITY_TEXT.grandQuote.part1}<span className="text-rose-700 font-semibold bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100">{DEEPER_REALITY_TEXT.grandQuote.span1}</span>{DEEPER_REALITY_TEXT.grandQuote.part2}<span className="text-amber-900 font-semibold bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">{DEEPER_REALITY_TEXT.grandQuote.span2}</span>{DEEPER_REALITY_TEXT.grandQuote.part3}<span className="text-emerald-800 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100 font-medium">{DEEPER_REALITY_TEXT.grandQuote.span3}</span>{DEEPER_REALITY_TEXT.grandQuote.part4}<span className="underline underline-offset-4 decoration-amber-500/50 text-[#120f0e] font-bold">{DEEPER_REALITY_TEXT.grandQuote.span4}</span>{DEEPER_REALITY_TEXT.grandQuote.part5}"
           </p>
         </div>
 
@@ -260,10 +292,10 @@ export default function DeeperRealityMap() {
         <div className="max-w-4xl mx-auto space-y-6 relative z-10 border-t border-stone-200/80 pt-6">
           <div className="text-center bg-amber-50/60 py-2.5 px-4 rounded-xl border border-amber-200/50 max-w-lg mx-auto mb-4">
             <span className="font-mono text-[10px] uppercase tracking-widest text-[#8c7851] font-bold block">
-              Interactive Action Plan
+              {DEEPER_REALITY_TEXT.actionPlanHeader}
             </span>
             <p className="text-xs text-stone-700 font-sans mt-1">
-              👇 <span className="font-bold text-amber-900">Click any category button below</span> to inspect active, measurable ways to foster choice:
+              👇 {DEEPER_REALITY_TEXT.actionPlanDesc}
             </p>
           </div>
 
@@ -312,7 +344,7 @@ export default function DeeperRealityMap() {
               {/* Part 1: Selected Focus Details */}
               <div className="space-y-2">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-stone-100 text-[#8c7851] font-mono text-[10px] uppercase font-bold tracking-widest">
-                  Selected Focus
+                  {DEEPER_REALITY_TEXT.selectedFocusBadge}
                 </span>
                 <p className="text-stone-850 text-sm leading-relaxed font-sans first-letter:text-2.5xl first-letter:font-serif first-letter:font-bold first-letter:mr-1">
                   {choiceContent[activeChoiceAction].description}
@@ -322,7 +354,7 @@ export default function DeeperRealityMap() {
               {/* Part 2: 3 Real-World Steps to Practice (Prisinte Bullet Lists) */}
               <div className="border-t border-stone-100 pt-5 space-y-4">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 font-mono text-[10px] uppercase font-bold tracking-widest border border-amber-100">
-                  3 Real-World Steps to Practice
+                  {DEEPER_REALITY_TEXT.stepsBadge}
                 </span>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -335,7 +367,7 @@ export default function DeeperRealityMap() {
                         <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-mono text-xs font-bold shrink-0">
                           {idx + 1}
                         </span>
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400">Step</span>
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400">{DEEPER_REALITY_TEXT.stepPrefix}</span>
                       </div>
                       <p className="text-xs text-stone-700 leading-relaxed font-sans">
                         {action}
