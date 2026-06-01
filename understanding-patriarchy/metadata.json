@@ -1,0 +1,6 @@
+{
+  "name": "Understanding Patriarchy",
+  "description": "An award-winning, immersive long-form interactive editorial exploring what patriarchy is, its effects on women and men, and who benefits from it.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
